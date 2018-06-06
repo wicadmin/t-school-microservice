@@ -22,11 +22,11 @@ To complete this tutorial, you will need the following:
 
 ## Provision Cloudant Database in IBM Cloud:
 
-Login to your IBM Cloud console  
-Open browser to create Cloudant Service using this link [https://new-console.ng.bluemix.net/catalog/services/cloudant-nosql-db](https://new-console.ng.bluemix.net/catalog/services/cloudant-nosql-db)  
-Name your Cloudant service name like `t-school-cloudantdb`  
-For testing, you can select the "Lite" plan, then click "Create"  
-Once created, open the credential tab to note down your Cloudant Service credential, for example:
+* Login to your IBM Cloud console  
+* Open browser to create Cloudant Service using this link [https://new-console.ng.bluemix.net/catalog/services/cloudant-nosql-db](https://new-console.ng.bluemix.net/catalog/services/cloudant-nosql-db)  
+* Name your Cloudant service name like `t-school-cloudantdb`  
+* For testing, you can select the "Lite" plan, then click "Create"  
+* Once created, open the credential tab to note down your Cloudant Service credential, for example:
 
 ```
 {
@@ -37,9 +37,9 @@ Once created, open the credential tab to note down your Cloudant Service credent
  "url": "https://xxxxx-bluemix.cloudant.com"
 }
 ```
-Then, click the "Launch" button to open the Cloudant management console.   
+* Then, click the "Launch" button to open the Cloudant management console.   
 
-You can close the console now.
+* You can close the console now.
 
 ## Run the application locally:
 
