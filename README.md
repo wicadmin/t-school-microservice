@@ -116,8 +116,8 @@ To query the account that you just inserted use url http://localhost:8080/micro/
 
 Next Steps for you to try (no instruction available):
 
-* Add accountBalance field to the account entity, build and run the application.
-* Add a new JSON document with the newly added field and query to make sure changes you have made is working.
 * Create a new git repository and push your source code to a newly created git repository
 * Create/Configure a devOps toolchain in IBM Cloud to pull the source code from your git repository and build & deploy the application on either on to cloud foundry or kubernetes cluster.
+* Create a new microservices "accountTransaction" following the same framework. Define attributes accountID, transactionDate, transactionAmount, and merchant
+* Test and deploy accountTransaction microservices to IBM Cloud.
 
