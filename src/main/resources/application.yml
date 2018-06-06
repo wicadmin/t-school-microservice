@@ -1,0 +1,18 @@
+# Spring properties
+spring:
+  application:
+     name: account-microservice
+
+
+# Server configuration
+server:
+  context-path: /micro
+  port: 8080
+
+
+# Cloudant Configuration
+cloudant:
+    db: demo-now
+    username: 95546fb7-eb3a-4fd6-94aa-61a3da6d1ffb-bluemix
+    password: ad42ec501aab0f66e888fff51563879a5b36055271d257699494a19bf71d65ff
+    url: https://95546fb7-eb3a-4fd6-94aa-61a3da6d1ffb-bluemix.cloudant.com
