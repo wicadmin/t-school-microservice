@@ -5,17 +5,27 @@ https://github.com/ibm-cloud-architecture/refarch-cloudnative*
 
 ## Introduction
 
-This project is built to demonstrate how to build a Spring Boot Microservices application to access IBM Cloudant NoSQL database. It provides basic operations of saving and querying reviews from database as part of Social Review function. The project covers following technical areas:
+This project is built to demonstrate how to build a Spring Boot Microservices application to access IBM Cloudant NoSQL database. It provides basic operations of saving and querying accounts from database. The project covers following technical areas:
 
  - Leverage Spring Boot framework to build Microservices application
  - Use IBM Cloudant Spring Boot Starter to access Cloudant database
+
+## Prerequsite
+To complete this tutorial, you will need the following:
+
+JDK 1.8
+Gradle 2.3+
+Git client
+
+## Git clone
+`https://github.com/shettygit/t-school-microservice.git`
 
 ## Provision Cloudant Database in IBM Cloud:
 
 Login to your IBM Cloud console  
 Open browser to create Cloudant Service using this link [https://new-console.ng.bluemix.net/catalog/services/cloudant-nosql-db](https://new-console.ng.bluemix.net/catalog/services/cloudant-nosql-db)  
-Name your Cloudant service name like `refarch-cloudantdb`  
-For testing, you can select the "Shared" plan, then click "Create"  
+Name your Cloudant service name like `t-school-cloudantdb`  
+For testing, you can select the "Lite" plan, then click "Create"  
 Once created, open the credential tab to note down your Cloudant Service credential, for example:
 
 ```
@@ -35,19 +45,29 @@ You can close the console now.
 
 - Create Cloudant database
 
-    You can either use Cloudant local or IBM Cloudant managed account. Once you have cloudant setup, update the src/resources/application.yml file for the Cloudant credential:
+    Once you have cloudant setup, update the src/resources/application.yml file for the Cloudant credential:
 
     ```yml
     # Cloudant Configuration
     cloudant:
-        db: socialreviewdb
+        db: accountdb
         username: {your_cloudant_username}
         password: {your_cloudant_password}
-        host: {your_cloudant_host}
+        host: https://{your_cloudant_host}
     ```
 
 - Run following command to build and test the application:
 
+    ```
+    $ ./gradlew build
+    ```
+    If you get following error.
+    `If you get Error: Could not find or load main class org.gradle.wrapper.GradleWrapperMain`
+    Issue Command: 
+    ```
+    $ gradle wrapper
+    ```
+    Then Command:
     ```
     $ ./gradlew build
     ```
@@ -58,27 +78,21 @@ You can close the console now.
     $ java -jar build/libs/micro-socialreview-0.1.0.jar
     ```
 
-- To run integration test case:
-
-    ```
-    $ ./gradlew test
-    ````
-
 - Validate the application:
 
-    Go to the reviews endpoint to see all reviews in the database: http://localhost:8080/micro/review
+    Go to the reviews endpoint to see all reviews in the database: http://localhost:8080/micro/account
 
     You can use Chrome POSTMAN to insert a new review document using the following sample content:
 
     ```json
-    {
-        "comment": "Nice Product",
-        "itemId": 13402,
-        "rating": 5,
-        "reviewer_email": "gangchen@us.ibm.com",
-        "reviewer_name": "Gang Chen",
-        "review_date": "06/08/2016"
-    }
+     {
+      "comment": "VIP Customer",
+      "accountId": 14402,
+      "accountType": "Checking",
+      "ownerEmail": "gangchen@us.ibm.com",
+      "ownerName": "Gang Chen",
+      "accountOpenDate": "01/31/2017"
+     }
     ```
 
     Or you can use the following curl command:
@@ -88,11 +102,21 @@ You can close the console now.
         --header 'accept: application/json' \
         --header 'content-type: application/json' \
         --data @- <<'EOF'
-        {"comment": "Nice product",
-        "itemId": 13402,
-        "rating": 3,
-        "reviewer_email":"gangchen@us.ibm.com",
-        "reviewer_name": "Gang Chen",
-        "review_date": "12/31/2017"}' 
+        {
+         "comment": "VIP Customer",
+         "accountId": 14402,
+         "accountType": "Checking",
+         "ownerEmail": "gangchen@us.ibm.com",
+         "ownerName": "Gang Chen",
+         "accountOpenDate": "01/31/2017"
+        }' 
         EOF
     ```
+To query the account that you just inserted use url http://localhost:8080/micro/account?accountId=14402
+
+Next Steps for you to try (no instruction available):
+
+* Add accountBalance filed to your account entity, add new JSON document with the newly added field and query to make sure you can pull entire record.
+* Create a new git repository and push your source code to a newly created git repository
+* Configure delivery pipeline in IBM Cloud to pull the source code from your git repository and deploy the application on to cloud foundry or kubernetes cluster.
+
