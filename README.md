@@ -13,9 +13,9 @@ This project is built to demonstrate how to build a Spring Boot Microservices ap
 ## Prerequsite
 To complete this tutorial, you will need the following:
 
-JDK 1.8
-Gradle 2.3+
-Git client
+* JDK 1.8
+* Gradle 2.3+
+* Git client
 
 ## Git clone
 `https://github.com/shettygit/t-school-microservice.git`
